@@ -25,7 +25,7 @@ $empSession = $fnc->getUser($_SESSION['user']);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>POS & STOCK MANAGEMENT : SATIYA SOFTWARE</title>
+    <title>POS & STOCK SYSTEM</title>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <!-- Theme style -->
@@ -101,7 +101,7 @@ $empSession = $fnc->getUser($_SESSION['user']);
     });
     </script>
     <!-- ChartJS -->
-    <script src="plugins/chart.js/Chart.min.js"></script>
+    <script type="text/javascript" src="plugin/chart/Chart.bundle.js"></script>
     <!-- DatePicker -->
     <link rel="stylesheet" href="plugin/datepicker/jquery.datetimepicker.css">
     <script type="text/javascript" charset="utf8" src="plugin/datepicker/jquery.datetimepicker.full.js"></script>
@@ -115,6 +115,7 @@ $empSession = $fnc->getUser($_SESSION['user']);
             ?>
         <div class="content-wrapper">
             <?php if (!isset($menu)){ include ('menu/main.php'); }?>
+            <?php if ($menu=='sale'){ include ('menu/sale/index.php'); }?>
         </div>
         <?php include ('template/footer.php'); ?>
     </div>
