@@ -1,0 +1,47 @@
+.autocomplete_list * {
+    font-family: "Bai Jamjuree", sans-serif;
+    font-size: 16px;
+}
+
+.autocomplete_list b {
+    font-weight: normal;
+}
+
+.autocomplete_list {
+    background: #ffffff; display: block;
+    border: 1px solid gray;
+    text-align: left; z-index: 2000;
+
+}
+
+.autocomplete_list, .autocomplete_list ol, .autocomplete_list li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.autocomplete_list li {
+    margin: 0;
+    text-align: left;
+    cursor: pointer;
+    padding: 4px;
+    border-bottom: 1px solid silver;
+}
+
+.autocomplete_list .last_item {
+    border: none;
+}
+
+.autocomplete_list .current_item {
+    background: #b4d5fe; color: #000;
+}
+
+.autocomplete_list span {
+    color: #111; float: right; padding-left: 2em;
+}
+
+/*.autocomplete_icon {*/
+    /*background-image: url("asset/img/autocomplete.gif");*/
+    /*cursor: pointer;*/
+    /*cursor: hand;*/
+/*}*/
