@@ -94,6 +94,21 @@ Class pos {
         }
     return $obj;
     }
+
+    public function getDaily($dateNow){
+        $sql = "SELECT * 
+                FROM tb_order
+                LEFT JOIN tb_order_list ON tb_order_list.order_id = tb_order.order_id 
+                LEFT JOIN tb_item ON tb_item.item_barcode = tb_order_list.list_barcode 
+                LEFT JOIN tb_item_unit ON tb_item_unit.unit_id = tb_item.item_unit
+                WHERE SUBSTRING(tb_order.order_date,1,10) = '{$dateNow}'";
+        global $mysqli; $obj = array();
+        $res = $mysqli->query($sql);
+        while($data = $res->fetch_assoc()) {
+            $obj[] = $data;
+        }
+    return $obj;
+    }
 }
 
 ?>

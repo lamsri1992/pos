@@ -70,34 +70,22 @@ $count_low = $fnc->countLowOrderPoint();
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="text-center">1</td>
-                                            <td>เบียร์ช้าง (กระป๋องยาว)</td>
-                                            <td>48 บาท</td>
-                                            <td>100 กระป๋อง</td>
+                                            <td>1</td>
+                                            <td>เบียร์ช้าง ขวดใหญ่</td>
+                                            <td>58.00 บาท</td>
+                                            <td>464.00 บาท</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-center">2</td>
-                                            <td>เบียร์ลีโอ (กระป๋องยาว)</td>
-                                            <td>52 บาท</td>
-                                            <td>62 กระป๋อง</td>
+                                            <td>2</td>
+                                            <td>เบียร์สิงห์ ขวดใหญ่</td>
+                                            <td>65.00 บาท</td>
+                                            <td>325.00 บาท</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-center">3</td>
-                                            <td>เบียร์ช้าง (ขวดใหญ่)</td>
-                                            <td>55 บาท</td>
-                                            <td>48 ขวด</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">4</td>
-                                            <td>เบียร์ลีโอ (ขวดใหญ่)</td>
-                                            <td>58 บาท</td>
-                                            <td>43 ขวด</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">5</td>
-                                            <td>smirnoff midnight (กระป๋องเล็ก)</td>
-                                            <td>48 บาท</td>
-                                            <td>32 กระป๋อง</td>
+                                            <td>3</td>
+                                            <td>มาม่า ต้มยำกุ้ง</td>
+                                            <td>6.00 บาท</td>
+                                            <td>12.00 บาท</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -116,7 +104,7 @@ var myChart = new Chart(ctx, {
         labels: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน'],
         datasets: [{
             label: 'สรุปยอดการขาย (เดือน/บาท)',
-            data: [10545, 7584, 9965, 12552, 10232, 8522],
+            data: [801, 0, 0, 0, 0, 0],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',

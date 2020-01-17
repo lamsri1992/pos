@@ -113,6 +113,9 @@ $empSession = $fnc->getUser($_SESSION['user']);
             <?php if (!isset($menu)){ include ('menu/main.php'); }?>
             <?php if ($menu=='sale'){ include ('menu/sale/index.php'); }?>
             <?php if ($menu=='stock'){ include ('menu/stock/index.php'); }?>
+            <?php if ($menu=='daily'){ include ('menu/sale/daily.php'); }?>
+            <?php if ($menu=='week'){ include ('menu/sale/week.php'); }?>
+            <?php if ($menu=='month'){ include ('menu/sale/month.php'); }?>
         </div>
         <?php include ('template/footer.php'); ?>
     </div>
