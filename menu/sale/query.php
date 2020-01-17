@@ -16,6 +16,13 @@ if($op == 'addCart'){
         "list_barcode"=>$item
     );
     insertSQL("tb_order_list",$data);
+    // Update Stock
+    $getItem = $fnc->getItem($item);
+    $balance = $getItem['item_balance']-$qty;
+    $data = array(
+        "item_balance"=>$balance
+    );
+    updateSQL("tb_item",$data,"item_barcode=$item");
 }
 
 if($op == 'delCart'){
@@ -23,4 +30,22 @@ if($op == 'delCart'){
     deleteSQL("tb_order_list","list_id=$id");
     header('Location: ../../?menu=sale');
 }
+
+if($op == 'endCart'){
+    $id = mysqli_real_escape_string($mysqli,$_REQUEST['empID']);
+    $total = mysqli_real_escape_string($mysqli,$_REQUEST['total']);
+    $data = array(
+        "emp_id"=>$id,
+        "order_income"=>$total
+    );
+    insertSQL("tb_order",$data);
+    // Get Last OrderID
+    $last_id = $fnc->getLastOrder();
+    // Update OrderListID
+    $data = array(
+        "order_id"=>$last_id['last_id']
+    );
+    updateSQL("tb_order_list",$data,"order_id IS NULL");
+}
+
 ?>

@@ -41,6 +41,16 @@ Class pos {
     return $data;
     }
 
+    public function getItem($barcode){
+        $sql = "SELECT *
+                FROM tb_item
+                WHERE item_barcode = '{$barcode}'";
+        global $mysqli;
+        $res = $mysqli->query($sql);
+        $data = $res->fetch_assoc();
+    return $data;
+    }
+
     public function getLastOrder(){
         $sql = "SELECT MAX(order_id) AS last_id FROM tb_order";
         global $mysqli;
@@ -52,7 +62,8 @@ Class pos {
     public function getCart(){
         $sql = "SELECT * 
                 FROM tb_order_list
-                LEFT JOIN tb_item ON tb_item.item_barcode = tb_order_list.list_barcode";
+                LEFT JOIN tb_item ON tb_item.item_barcode = tb_order_list.list_barcode
+                WHERE tb_order_list.order_id IS NULL";
         global $mysqli; $obj = array();
         $res = $mysqli->query($sql);
         while($data = $res->fetch_assoc()) {

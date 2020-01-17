@@ -1,4 +1,4 @@
-<?php $cart = $fnc->getCart(); foreach ($cart as $ct){ $total += $ct['item_price']*$ct['list_qty'];}?>
+<?php $cart = $fnc->getCart(); foreach ($cart as $ct){ $total += $ct['item_price']*$ct['list_qty'];} ?>
 <section class="content-header"></section>
 <section class="content">
     <div class="card">
@@ -33,9 +33,9 @@
                         value="<?=number_format($total,2)?>" readonly>
                 </div>
                 <div class="col-3">
-                    <a href="#" class="ajaxModal btn btn-success btn-block" style="font-size:35px;" data-target="#CheckOut"
-                        data-toggle="modal">
-                        <i class="fa fa-check-square"></i> Checkout
+                    <a href="#" id="pressChk" class="ajaxModal btn btn-success btn-block" style="font-size:35px;"
+                        data-target="#CheckOut" data-toggle="modal">
+                        <i class="fa fa-calculator"></i> คิดเงิน (F5)
                     </a>
                 </div>
                 <table class="table table-hover table-valign-middle table-sm" style="font-size:20px;">
@@ -75,7 +75,8 @@
                                     style="color:blue;font-weight:bold;" readonly>
                             </td>
                             <td class="text-center">
-                                <a href="menu/sale/query.php?op=delCart&id=<?=$ct['list_id']?>" class="btn btn-sm btn-danger">
+                                <a href="menu/sale/query.php?op=delCart&id=<?=$ct['list_id']?>"
+                                    class="btn btn-sm btn-danger">
                                     <i class="fa fa-trash-alt"></i>
                                 </a>
                             </td>
@@ -115,6 +116,18 @@ $('#addCart').on("submit", function(event) {
         }
     });
 });
+
+document.onkeydown = fkey;
+document.onkeypress = fkey
+document.onkeyup = fkey;
+
+function fkey(e) {
+
+    if (e.keyCode == 116) {
+        e.preventDefault();
+        $('#pressChk').click();
+    }
+}
 
 $('.ajaxModal').click(function() {
     $.ajax({
