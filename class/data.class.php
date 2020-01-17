@@ -24,7 +24,7 @@ Class pos {
     public function countOrderPoint(){
         $sql = "SELECT COUNT(*) AS num
                 FROM tb_item
-                WHERE item_balance = item_orderpoint";
+                WHERE item_balance <= item_orderpoint";
         global $mysqli;
         $res = $mysqli->query($sql);
         $data = $res->fetch_assoc();
@@ -64,6 +64,29 @@ Class pos {
                 FROM tb_order_list
                 LEFT JOIN tb_item ON tb_item.item_barcode = tb_order_list.list_barcode
                 WHERE tb_order_list.order_id IS NULL";
+        global $mysqli; $obj = array();
+        $res = $mysqli->query($sql);
+        while($data = $res->fetch_assoc()) {
+            $obj[] = $data;
+        }
+    return $obj;
+    }
+
+    public function getStock(){
+        $sql = "SELECT * 
+                FROM tb_item
+                LEFT JOIN tb_item_unit ON tb_item_unit.unit_id = tb_item.item_unit";
+        global $mysqli; $obj = array();
+        $res = $mysqli->query($sql);
+        while($data = $res->fetch_assoc()) {
+            $obj[] = $data;
+        }
+    return $obj;
+    }
+
+    public function getUnit(){
+        $sql = "SELECT * 
+                FROM tb_item_unit";
         global $mysqli; $obj = array();
         $res = $mysqli->query($sql);
         while($data = $res->fetch_assoc()) {

@@ -2,6 +2,7 @@
 	$menu = $_GET['menu'];
     if($menu=='main' || $menu==''){$ac_main='active';}
 	if($menu=='sale'){$ac_sale='active';}
+	if($menu=='stock'){$ac_stock='active';}
 
 ?>
 <aside class="main-sidebar elevation-4 sidebar-dark-info">
@@ -25,7 +26,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="?menu=stock" class="nav-link <?=$ac_stock?>">
                         <i class="nav-icon fa fa-box-open"></i>
                         <p>ระบบบริหารคลังสินค้า</p>
                     </a>

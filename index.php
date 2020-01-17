@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("Asia/Bangkok");
 session_start();
 error_reporting(E_ALL & ~E_NOTICE);
 if (!isset($_SESSION['user'])){
@@ -89,14 +90,9 @@ $empSession = $fnc->getUser($_SESSION['user']);
         });
     });
     $(document).ready(function() {
-        var table = $('#empTable').DataTable({
+        var table = $('#itemData').DataTable({
             scrollX: true,
             responsive: true,
-            "pageLength": 20,
-            "lengthMenu": [
-                [20, 50, 100, -1],
-                [20, 50, 100, "All"]
-            ],
         });
     });
     </script>
@@ -116,6 +112,7 @@ $empSession = $fnc->getUser($_SESSION['user']);
         <div class="content-wrapper">
             <?php if (!isset($menu)){ include ('menu/main.php'); }?>
             <?php if ($menu=='sale'){ include ('menu/sale/index.php'); }?>
+            <?php if ($menu=='stock'){ include ('menu/stock/index.php'); }?>
         </div>
         <?php include ('template/footer.php'); ?>
     </div>
