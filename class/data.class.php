@@ -51,6 +51,17 @@ Class pos {
     return $data;
     }
 
+    public function editItem($id){
+        $sql = "SELECT *
+                FROM tb_item
+                LEFT JOIN tb_item_unit ON tb_item_unit.unit_id = tb_item.item_unit 
+                WHERE item_id = '{$id}'";
+        global $mysqli;
+        $res = $mysqli->query($sql);
+        $data = $res->fetch_assoc();
+    return $data;
+    }
+
     public function getLastOrder(){
         $sql = "SELECT MAX(order_id) AS last_id FROM tb_order";
         global $mysqli;

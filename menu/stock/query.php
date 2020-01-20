@@ -46,4 +46,27 @@ if($op == 'delUnit'){
     $mysqli->query($sql);
     header('Location: ../../?menu=setUnit');
 }
+
+if($op == 'editItem'){
+    $id = mysqli_real_escape_string($mysqli,$_REQUEST['id']);
+    $name = mysqli_real_escape_string($mysqli,$_REQUEST['name']);
+    $price = mysqli_real_escape_string($mysqli,$_REQUEST['price']);
+    $stock = mysqli_real_escape_string($mysqli,$_REQUEST['stock']);
+    $point = mysqli_real_escape_string($mysqli,$_REQUEST['point']);
+    $balance = mysqli_real_escape_string($mysqli,$_REQUEST['balance']);
+    $barcode = mysqli_real_escape_string($mysqli,$_REQUEST['barcode']);
+    $unit = mysqli_real_escape_string($mysqli,$_REQUEST['unit']);
+    $now = date('Y-m-d H:i:s');
+    $data = array(
+        "item_name"=>$name,
+        "item_price"=>$price,
+        "item_unit"=>$unit,
+        "item_stock"=>$stock,
+        "item_orderpoint"=>$point,
+        "item_balance"=>$balance,
+        "item_barcode"=>$barcode,
+        "item_update"=>$now
+    );
+    updateSQL("tb_item",$data,"item_id=$id");
+}
 ?>

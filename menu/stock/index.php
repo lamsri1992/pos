@@ -76,7 +76,7 @@
                         <td class="text-center"><?=$it['item_balance']?></td>
                         <td class="text-center"><?=$it['unit_name']?></td>
                         <td class="text-right"><?=number_format($it['item_price'],2)?></td>
-                        <td class="text-center"><?=DateTimeThai($it['item_date'])?></td>
+                        <td class="text-center"><?=DateTimeThai($it['item_update'])?></td>
                         <td class="text-center">
                             <a href="#" class="ajaxItem badge badge-success" data-target="#editItem" data-toggle="modal"
                                 data-id="<?=$it['item_id']?>">
@@ -163,6 +163,15 @@
     </div>
 </div>
 
+<!-- Modal Edit -->
+<div class="modal fade" id="editItem" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document" style="font-size:14px;">
+        <div id="ajaxEdit">
+            <!-- เรียกใช้งานผ่าน ajax -->
+        </div>
+    </div>
+</div>
+
 <script>
 $('#addItemNew').on("submit", function(event) {
     event.preventDefault();
@@ -195,5 +204,16 @@ $('#addItemNew').on("submit", function(event) {
                 });
             }
         });
+});
+
+$('.ajaxItem').click(function() {
+    var id = $(this).attr('data-id');
+    $.ajax({
+        url: "menu/stock/edit.php?id=" + id,
+        cache: false,
+        success: function(result) {
+            $('#ajaxEdit').html(result);
+        }
+    });
 });
 </script>
