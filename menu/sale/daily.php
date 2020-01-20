@@ -17,7 +17,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3><?=$sales?><sup style="font-size: 20px"> รายการ</sup></h3>
+                            <h3><?=$sales?><sup style="font-size: 20px"> ชิ้น</sup></h3>
                             <p>สินค้าที่ขาย</p>
                         </div>
                         <div class="icon">
@@ -39,7 +39,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-dark">
                         <div class="inner">
-                            <h3>3<sup style="font-size: 20px"> คน</sup></h3>
+                            <h3>0<sup style="font-size: 20px"> คน</sup></h3>
                             <p>ลูกหนี้วันนี้</p>
                         </div>
                         <div class="icon">
@@ -50,7 +50,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>1<sup style="font-size: 20px"> คน</sup></h3>
+                            <h3>0<sup style="font-size: 20px"> คน</sup></h3>
                             <p>สมาชิกร้านค้าใหม่</p>
                         </div>
                         <div class="icon">
@@ -69,6 +69,7 @@
                             <th class="text-center">จำนวน</th>
                             <th class="text-center">หน่วยนับ</th>
                             <th class="text-right">รวม</th>
+                            <th class="text-center">พนักงานขาย</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -80,6 +81,7 @@
                             <td class="text-center"><?=$it['list_qty']?></td>
                             <td class="text-center"><?=$it['unit_name']?></td>
                             <td class="text-right"><?=number_format($it['item_price']*$it['list_qty'],2)?></td>
+                            <td class="text-center"><?=$it['emp_name']?></td>
                         </tr>
                         <?php } ?>
                     </tbody>

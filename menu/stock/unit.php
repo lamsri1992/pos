@@ -38,16 +38,7 @@
             <div class="card-footer">
                 <div class="text-right">
                     <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#addItem">
-                        <i class="fa fa-cart-plus"></i> เพิ่มสินค้าใหม่
-                    </button>
-                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateItem">
-                        <i class="fa fa-cart-arrow-down"></i> รับเข้าสินค้า
-                    </button>
-                    <a href="?menu=setUnit" class="btn btn-info btn-sm">
-                        <i class="fa fa-tasks"></i> ตั้งค่าหน่วยนับ
-                    </a>
-                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#">
-                        <i class="fa fa-print"></i> พิมพ์รายงาน
+                        <i class="fa fa-plus-circle"></i> เพิ่มหน่วยนับ
                     </button>
                 </div>
             </div>
@@ -55,32 +46,23 @@
                 <thead class="thead-dark">
                     <tr>
                         <th class="text-center">ID</th>
-                        <th class=""><i class="fa fa-barcode"></i> Barcode</th>
                         <th class="">รายการ</th>
-                        <th class="text-center">คงเหลือ</th>
-                        <th class="text-center">หน่วยนับ</th>
-                        <th class="text-right">ราคา</th>
-                        <th class="text-center">อัพเดตล่าสุด</th>
                         <th class="text-center"><i class="fa fa-cog"></i></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($item as $it){ 
-                        if($it['item_balance']<=$it['item_orderpoint']){ 
-                            $orderpoint="<span class='badge badge-danger'><i class='fa fa-exclamation-circle'></i> ใกล้หมด</span>";
-                        }else{$orderpoint="";} ?>
+                    <?php foreach ($unit as $it){ ?>
                     <tr>
-                        <td class="text-center"><?=$it['item_id']?></td>
-                        <td class=""><?=$it['item_barcode']?></td>
-                        <td class=""><?=$it['item_name']." ".$orderpoint?></td>
-                        <td class="text-center"><?=$it['item_balance']?></td>
-                        <td class="text-center"><?=$it['unit_name']?></td>
-                        <td class="text-right"><?=number_format($it['item_price'],2)?></td>
-                        <td class="text-center"><?=DateTimeThai($it['item_date'])?></td>
-                        <td class="text-center">
-                            <a href="#" class="ajaxItem badge badge-success" data-target="#editItem" data-toggle="modal"
+                        <td class="text-center"><?=$it['unit_id']?></td>
+                        <td class=""><?=$it['unit_name']?></td>
+                        <td class="text-center" width="10%">
+                            <a href="#" class="ajaxUnit badge badge-success" data-target="#editItem" data-toggle="modal"
                                 data-id="<?=$it['item_id']?>">
                                 <i class="fa fa-edit"></i> แก้ไข
+                            </a>
+                            <a href="menu/stock/query.php?op=delUnit&id=<?=$it['unit_id']?>" class="badge badge-danger"
+                                onclick="return confirm('ยืนยันการลบหน่วยนับ <?=$it['unit_name']?> ?\nหากลบข้อมูลหน่วยนับ อาจส่งผลต่อระบบคลังบางส่วน')">
+                                <i class="fa fa-trash-alt"></i> ลบ
                             </a>
                         </td>
                     </tr>
@@ -93,7 +75,7 @@
 
 <!-- addItem -->
 <div class="modal fade" id="addItem" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"><i class="fa fa-cart-plus"></i> เพิ่มสินค้าใหม่</h5>
@@ -102,52 +84,9 @@
                 <div class="modal-body">
                     <table class="table table-bordered table-sm table-valign-middle" width="100%">
                         <tr>
-                            <td width="20%">รายการ</td>
+                            <td width="20%">ชื่อหน่วยนับ</td>
                             <td>
-                                <input type="text" name="name" class="form-control" placeholder="ชื่อสินค้า" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ราคาขาย/หน่วย</td>
-                            <td>
-                                <input type="number" name="price" class="form-control" placeholder="กรอกเฉพาะตัวเลข"
-                                    required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>หน่วยนับ</td>
-                            <td>
-                                <input list="unit" name="unit" class="form-control" required></label>
-                                <datalist id="unit">
-                                    <?php foreach ($unit as $un){ ?>
-                                    <option value="<?=$un['unit_id']." : ".$un['unit_name']?>">
-                                        <?php } ?>
-                                </datalist>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>จำนวนคงคลัง</td>
-                            <td><input type="number" name="stock" class="form-control" placeholder="กรอกเฉพาะตัวเลข"
-                                    required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>จุดสั่งซื้อ</td>
-                            <td><input type="number" name="point" class="form-control" placeholder="กรอกเฉพาะตัวเลข"
-                                    required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>จำนวนรับเข้า</td>
-                            <td><input type="number" name="balance" class="form-control" placeholder="กรอกเฉพาะตัวเลข"
-                                    required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Barcode</td>
-                            <td>
-                                <input type="text" name="barcode" class="form-control"
-                                    placeholder="สแกนบาร์โค้ดจากสินค้า" required>
+                                <input type="text" name="name" class="form-control" placeholder="ระบุชื่อหน่วยนับ" required>
                             </td>
                         </tr>
                     </table>
@@ -167,7 +106,7 @@
 $('#addItemNew').on("submit", function(event) {
     event.preventDefault();
     swal({
-            title: "ยืนยันการเพิ่มรายการใหม่ ?",
+            title: "ยืนยันการเพิ่มหน่วยนับ ?",
             icon: "warning",
             dangerMode: true,
             buttons: true,
@@ -176,7 +115,7 @@ $('#addItemNew').on("submit", function(event) {
             if (createCnf) {
                 document.getElementById("btnSave").disabled = true;
                 $.ajax({
-                    url: "menu/stock/query.php?op=addItem",
+                    url: "menu/stock/query.php?op=addUnit",
                     method: "POST",
                     data: $('#addItemNew').serialize(),
                     success: function(data) {
@@ -189,7 +128,7 @@ $('#addItemNew').on("submit", function(event) {
                                 timer: 1000,
                             });
                         window.setTimeout(function() {
-                            location.replace('?menu=stock')
+                            location.replace('?menu=setUnit')
                         }, 1500);
                     }
                 });

@@ -27,7 +27,17 @@ if($op == 'addCart'){
 
 if($op == 'delCart'){
     $id = mysqli_real_escape_string($mysqli,$_REQUEST['id']);
+    $qty = mysqli_real_escape_string($mysqli,$_REQUEST['qty']);
+    $item = mysqli_real_escape_string($mysqli,$_REQUEST['barcode']);
+    // Delete List Order
     deleteSQL("tb_order_list","list_id=$id");
+    // Update Stock When Delete Order List
+    $getItem = $fnc->getItem($item);
+    $balance = $getItem['item_balance']+$qty;
+    $data = array(
+        "item_balance"=>$balance
+    );
+    updateSQL("tb_item",$data,"item_barcode=$item");
     header('Location: ../../?menu=sale');
 }
 

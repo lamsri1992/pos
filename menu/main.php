@@ -2,6 +2,7 @@
 $count_item = $fnc->countItem();
 $count_order = $fnc->countOrderPoint();
 $count_low = $fnc->countLowOrderPoint();
+$chart_order = $fnc->getChartOrder();
 ?>
 <section class="content-header"></section>
 <section class="content">
@@ -103,8 +104,14 @@ var myChart = new Chart(ctx, {
     data: {
         labels: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน'],
         datasets: [{
-            label: 'สรุปยอดการขาย (เดือน/บาท)',
-            data: [801, 0, 0, 0, 0, 0],
+            label: 'สรุปยอดการขายปี <?=$chart_order['year']+543?>',
+            data: [
+                    <?=$chart_order['1']?>, 
+                    <?=$chart_order['2']?>, 
+                    <?=$chart_order['3']?>, 
+                    <?=$chart_order['4']?>, 
+                    <?=$chart_order['5']?>, 
+                    <?=$chart_order['6']?>],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',

@@ -101,6 +101,7 @@ Class pos {
                 LEFT JOIN tb_order_list ON tb_order_list.order_id = tb_order.order_id 
                 LEFT JOIN tb_item ON tb_item.item_barcode = tb_order_list.list_barcode 
                 LEFT JOIN tb_item_unit ON tb_item_unit.unit_id = tb_item.item_unit
+                LEFT JOIN tb_employee ON tb_employee.emp_id = tb_order.emp_id
                 WHERE SUBSTRING(tb_order.order_date,1,10) = '{$dateNow}'";
         global $mysqli; $obj = array();
         $res = $mysqli->query($sql);
@@ -109,6 +110,30 @@ Class pos {
         }
     return $obj;
     }
+
+    public function getChartOrder(){
+        $sql = "SELECT
+                YEAR(`order_date`) AS `year`,
+                SUM(IF(MONTH(`order_date`)=1,`order_income`,NULL)) AS `1`,
+                SUM(IF(MONTH(`order_date`)=2,`order_income`,NULL)) AS `2`,
+                SUM(IF(MONTH(`order_date`)=3,`order_income`,NULL)) AS `3`,
+                SUM(IF(MONTH(`order_date`)=4,`order_income`,NULL)) AS `4`,
+                SUM(IF(MONTH(`order_date`)=5,`order_income`,NULL)) AS `5`,
+                SUM(IF(MONTH(`order_date`)=6,`order_income`,NULL)) AS `6`,
+                SUM(IF(MONTH(`order_date`)=7,`order_income`,NULL)) AS `7`,
+                SUM(IF(MONTH(`order_date`)=8,`order_income`,NULL)) AS `8`,
+                SUM(IF(MONTH(`order_date`)=9,`order_income`,NULL)) AS `9`,
+                SUM(IF(MONTH(`order_date`)=10,`order_income`,NULL)) AS `10`,
+                SUM(IF(MONTH(`order_date`)=11,`order_income`,NULL)) AS `11`,
+                SUM(IF(MONTH(`order_date`)=12,`order_income`,NULL)) AS `12`
+                FROM `tb_order`
+                GROUP BY `year`";
+        global $mysqli;
+        $res = $mysqli->query($sql);
+        $data = $res->fetch_assoc();
+    return $data;
+    }
+
 }
 
 ?>

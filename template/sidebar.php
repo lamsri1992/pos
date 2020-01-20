@@ -2,7 +2,7 @@
 	$menu = $_GET['menu'];
     if($menu=='main' || $menu==''){$ac_main='active';}
 	if($menu=='sale'){$ac_sale='active';}
-    if($menu=='stock'){$ac_stock='active';}
+    if($menu=='stock' || $menu=='setUnit'){$ac_stock='active';}
     if($menu=='daily' || $menu=='week' || $menu=='month'){$ac_report='active'; $box='menu-open';}
     if($menu=='daily'){$ac_daily='active';}
     if($menu=='week'){$ac_week='active';}

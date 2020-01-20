@@ -75,7 +75,7 @@
                                     style="color:blue;font-weight:bold;" readonly>
                             </td>
                             <td class="text-center">
-                                <a href="menu/sale/query.php?op=delCart&id=<?=$ct['list_id']?>"
+                                <a href="menu/sale/query.php?op=delCart&id=<?=$ct['list_id']?>&barcode=<?=$ct['item_barcode']?>&qty=<?=$ct['list_qty']?>"
                                     class="btn btn-sm btn-danger">
                                     <i class="fa fa-trash-alt"></i>
                                 </a>

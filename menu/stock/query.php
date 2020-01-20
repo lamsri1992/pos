@@ -30,4 +30,20 @@ if($op == 'addItem'){
     );
     insertSQL("tb_item",$data);
 }
+
+if($op == 'addUnit'){
+    $name = mysqli_real_escape_string($mysqli,$_REQUEST['name']);
+    $data = array(
+        "unit_name"=>$name
+    );
+    insertSQL("tb_item_unit",$data);
+}
+
+if($op == 'delUnit'){
+    $id = mysqli_real_escape_string($mysqli,$_REQUEST['id']);
+    deleteSQL("tb_item_unit","unit_id=$id");
+    $sql = "ALTER TABLE tb_item_unit AUTO_INCREMENT = 1";
+    $mysqli->query($sql);
+    header('Location: ../../?menu=setUnit');
+}
 ?>

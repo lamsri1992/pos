@@ -2,10 +2,10 @@
 <section class="content">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Title</h3>
+            <h3 class="card-title">ยังไม่เปิดใช้งาน</h3>
         </div>
         <div class="card-body">
-            Start creating your amazing application!
+            อัพเดตระบบเพื่อขอเปิดใช้งานฟังก์ชั่นนี้
         </div>
     </div>
 </section>
