@@ -65,7 +65,7 @@ $unit = $fnc->getUnit();
                         <td>จำนวนคงเหลือ</td>
                         <td>
                             <input type="number" name="balance" class="form-control" placeholder="กรอกเฉพาะตัวเลข"
-                                value="<?=$data['item_balance']?>" required>
+                                value="<?=$data['item_balance']?>" readonly>
                         </td>
                     </tr>
                     <tr>
@@ -76,6 +76,9 @@ $unit = $fnc->getUnit();
                         </td>
                     </tr>
                 </table>
+                <small style="color:red;"><i class="fa fa-exclamation-circle"></i>
+                    จำนวนคงเหลือจะไม่สามารถแก้ไขได้ หากติดปัญหากรุณาติดต่อผู้ดูแลระบบ
+                </small>
             </div>
             <div class="modal-footer">
                 <button type="submit" id="btnSave" class="btn btn-success btn-sm"><i class="fa fa-save"></i>

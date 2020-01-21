@@ -66,6 +66,12 @@
                         <p>การตั้งค่าระบบ</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-question-circle"></i>
+                        <p>คู่มือการใช้งาน</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

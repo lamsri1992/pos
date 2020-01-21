@@ -70,7 +70,7 @@ $chart_order = $fnc->getChartOrder();
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <!-- <tr>
                                             <td>1</td>
                                             <td>เบียร์ช้าง ขวดใหญ่</td>
                                             <td>58.00 บาท</td>
@@ -87,7 +87,7 @@ $chart_order = $fnc->getChartOrder();
                                             <td>มาม่า ต้มยำกุ้ง</td>
                                             <td>6.00 บาท</td>
                                             <td>12.00 บาท</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -102,7 +102,7 @@ var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน'],
+        labels: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฏาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
         datasets: [{
             label: 'สรุปยอดการขายปี <?=$chart_order['year']+543?>',
             data: [
@@ -110,9 +110,21 @@ var myChart = new Chart(ctx, {
                     <?=$chart_order['2']?>, 
                     <?=$chart_order['3']?>, 
                     <?=$chart_order['4']?>, 
-                    <?=$chart_order['5']?>, 
-                    <?=$chart_order['6']?>],
+                    <?=$chart_order['5']?>,
+                    <?=$chart_order['6']?>,
+                    <?=$chart_order['7']?>,
+                    <?=$chart_order['8']?>,
+                    <?=$chart_order['9']?>,
+                    <?=$chart_order['10']?>,
+                    <?=$chart_order['11']?>,
+                    <?=$chart_order['12']?>],
             backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
@@ -121,6 +133,12 @@ var myChart = new Chart(ctx, {
                 'rgba(255, 159, 64, 0.2)'
             ],
             borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
                 'rgba(255,99,132,1)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',

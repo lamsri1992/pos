@@ -12,7 +12,7 @@
                         <div class="col-md-2">
                             <input type="number" name="qty" class="form-control"
                                 style="font-size:35px;color:white;background-color:black;font-weight:bold;"
-                                placeholder="จำนวน" autofocus required>
+                                placeholder="จำนวน" autofocus required min="1">
                         </div>
                         <div class="col-md-4 input-group mb-4">
                             <input type="text" name="barcode" class="form-control"
