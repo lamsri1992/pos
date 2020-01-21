@@ -1,4 +1,5 @@
 <?php
+session_start();
 include ('../../config/database.php');
 include ('../../class/sql.class.php');
 include ('../../class/data.class.php');
@@ -11,18 +12,20 @@ if($op == 'addCart'){
     $id = mysqli_real_escape_string($mysqli,$_REQUEST['empID']);
     $qty = mysqli_real_escape_string($mysqli,$_REQUEST['qty']);
     $item = mysqli_real_escape_string($mysqli,$_REQUEST['barcode']);
-    $data = array(
-        "list_qty"=>$qty,
-        "list_barcode"=>$item
-    );
-    insertSQL("tb_order_list",$data);
-    // Update Stock
     $getItem = $fnc->getItem($item);
-    $balance = $getItem['item_balance']-$qty;
-    $data = array(
-        "item_balance"=>$balance
-    );
-    updateSQL("tb_item",$data,"item_barcode=$item");
+    if (isset($getItem['item_barcode'])){
+        $data = array(
+            "list_qty"=>$qty,
+            "list_barcode"=>$item
+        );
+        insertSQL("tb_order_list",$data);
+        // Update Stock
+        $balance = $getItem['item_balance']-$qty;
+        $data = array(
+            "item_balance"=>$balance
+        );
+        updateSQL("tb_item",$data,"item_barcode=$item");
+    }
 }
 
 if($op == 'delCart'){

@@ -116,11 +116,11 @@ $('#saveBill').on("submit", function(event) {
                     closeOnClickOutside: false,
                     closeOnEsc: false,
                     buttons: false,
-                    timer: 1000,
+                    timer: 1900,
                 });
             window.setTimeout(function() {
                 location.replace('?menu=sale')
-            }, 1500);
+            }, 2000);
         }
     });
 });

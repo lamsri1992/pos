@@ -70,6 +70,7 @@
                             <th class="text-center">หน่วยนับ</th>
                             <th class="text-right">รวม</th>
                             <th class="text-center">พนักงานขาย</th>
+                            <th class="text-center"><i class="fa fa-clock"></i></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -82,6 +83,7 @@
                             <td class="text-center"><?=$it['unit_name']?></td>
                             <td class="text-right"><?=number_format($it['item_price']*$it['list_qty'],2)?></td>
                             <td class="text-center"><?=$it['emp_name']?></td>
+                            <td class="text-center"><?=DateTimeThai($it['order_date'])?></td>
                         </tr>
                         <?php } ?>
                     </tbody>

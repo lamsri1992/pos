@@ -1,4 +1,4 @@
-<?php $cart = $fnc->getCart(); foreach ($cart as $ct){ $total += $ct['item_price']*$ct['list_qty'];} ?>
+<?php $cart = $fnc->getCart(); foreach ($cart as $ct){ $total += $ct['item_price']*$ct['list_qty'];} if(empty($cart)){$cal="disabled";}else{$cal="";}?>
 <section class="content-header"></section>
 <section class="content">
     <div class="card">
@@ -33,10 +33,10 @@
                         value="<?=number_format($total,2)?>" readonly>
                 </div>
                 <div class="col-3">
-                    <a href="#" id="pressChk" class="ajaxModal btn btn-success btn-block" style="font-size:35px;"
-                        data-target="#CheckOut" data-toggle="modal">
+                    <button href="#" id="pressChk" class="ajaxModal btn btn-success btn-block" style="font-size:35px;"
+                        data-target="#CheckOut" data-toggle="modal" <?=$cal?>>
                         <i class="fa fa-calculator"></i> คิดเงิน (F5)
-                    </a>
+                    </button>
                 </div>
                 <table class="table table-hover table-valign-middle table-sm" style="font-size:20px;">
                     <thead class="thead-dark">
@@ -86,6 +86,15 @@
                 </table>
             </div>
         </div>
+        <div class="alert alert-secondary alert-dismissible fade show text-center" role="alert">
+            <small>
+                <strong>* โปรดอ่าน *</strong>
+                หากสแกนรหัส Barcode แล้วไม่มีรายการสินค้า ให้ท่านตรวจสอบรหัส Barcode ในระบบบริหารคลังสินค้า
+            </small>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     </div>
 </section>
 <!-- Modal More Leave -->
@@ -104,15 +113,9 @@ $('#addCart').on("submit", function(event) {
         method: "POST",
         data: $('#addCart').serialize(),
         success: function(data) {
-            swal('เพิ่มสินค้าแล้ว', 'Add Item Complete', 'success', {
-                closeOnClickOutside: false,
-                closeOnEsc: false,
-                buttons: false,
-                timer: 1000,
-            });
             window.setTimeout(function() {
                 location.replace('?menu=sale')
-            }, 1500);
+            });
         }
     });
 });
