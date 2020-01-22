@@ -46,14 +46,14 @@
                                 <p>ยอดขายรายวัน</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="?menu=week" class="nav-link <?=$ac_week?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>ยอดขายรายสัปดาห์</p>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
-                            <a href="?menu=month" class="nav-link <?=$ac_month?>">
+                            <a href="#" class="nav-link <?=$ac_month?>" data-toggle="modal" data-target="#month">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>ยอดขายรายเดือน</p>
                             </a>
@@ -76,3 +76,39 @@
         </nav>
     </div>
 </aside>
+
+<!-- Report Sale Month -->
+<div class="modal fade" id="month" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fa fa-search-dollar"></i> สรุปยอดขายรายเดือน</h5>
+            </div>
+            <form action="?menu=month" method="post">
+                <div class="modal-body">
+                    <select name="month" class="form-control input-md" required>
+                        <option value="">เลือกเดือน</option>
+                        <option value="1">- มกราคม</option>
+                        <option value="2">- กุมภาพันธ์</option>
+                        <option value="3">- มีนาคม</option>
+                        <option value="4">- เมษายน</option>
+                        <option value="5">- พฤษภาคม</option>
+                        <option value="6">- มิถุนายน</option>
+                        <option value="7">- กรกฏาคม</option>
+                        <option value="8">- สิงหาคม</option>
+                        <option value="9">- กันยายน</option>
+                        <option value="10">- ตุลาคม</option>
+                        <option value="11">- พฤศจิกายน</option>
+                        <option value="12">- ธันวาคม</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btnSave" class="btn btn-success btn-sm"><i class="fa fa-search"></i>
+                        ตกลง
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">ปิดหน้าต่าง</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

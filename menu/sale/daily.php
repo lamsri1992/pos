@@ -1,9 +1,4 @@
-<?php $daily = $fnc->getDaily(date('Y-m-d')); 
-    foreach ($daily as $ct){ 
-        $total += $ct['item_price']*$ct['list_qty'];
-        $sales += $ct['list_qty'];
-    } 
-?>
+<?php $daily = $fnc->getDaily(date('Y-m-d')); foreach ($daily as $ct){ $total += $ct['item_price']*$ct['list_qty']; $sales += $ct['list_qty']; } ?>
 <section class="content-header"></section>
 <section class="content">
     <div class="card">
