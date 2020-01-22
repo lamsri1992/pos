@@ -121,7 +121,7 @@ Class pos {
         }
     return $obj;
     }
-
+    
     public function getChartOrder(){
         $sql = "SELECT
                 YEAR(`order_date`) AS `year`,
