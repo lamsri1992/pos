@@ -71,19 +71,26 @@ if($op == 'editItem'){
 }
 
 if($op == 'updateItem'){
+    $emp = mysqli_real_escape_string($mysqli,$_REQUEST['empID']);
     $bill = mysqli_real_escape_string($mysqli,$_REQUEST['bill']);
     $item = mysqli_real_escape_string($mysqli,$_REQUEST['autoID']);
     $amount = mysqli_real_escape_string($mysqli,$_REQUEST['get_instock']);
+    $price = mysqli_real_escape_string($mysqli,$_REQUEST['get_price']);
+
     $data = array(
         "receive_item"=>$item,
         "receive_bill"=>$bill,
-        "receive_amount"=>$amount
+        "receive_price"=>$price,
+        "receive_amount"=>$amount,
+        "receive_emp"=>$emp
     );
     insertSQL("tb_item_receive",$data);
     // Update Stock Balance
+    $box = $fnc->editItem($item);
+    $total = $amount + $box['item_balance'];
     $now = date('Y-m-d H:i:s');
     $data = array(
-        "item_balance"=>$amount,
+        "item_balance"=>$total,
         "item_update"=>$now
     );
     updateSQL("tb_item",$data,"item_id=$item");

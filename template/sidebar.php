@@ -7,6 +7,7 @@
     if($menu=='daily'){$ac_daily='active';}
     if($menu=='week'){$ac_week='active';}
     if($menu=='month'){$ac_month='active';}
+    if($menu=='history'){$ac_history='active';}
 ?>
 <aside class="main-sidebar elevation-4 sidebar-dark-info">
     <a href="?" class="brand-link text-center">
@@ -53,6 +54,12 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="?menu=history" class="nav-link <?=$ac_history?>">
+                        <i class="nav-icon fa fa-history"></i>
+                        <p>ประวัติการรับสินค้าเข้า</p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">

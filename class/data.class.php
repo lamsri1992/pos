@@ -161,6 +161,19 @@ Class pos {
     return $data;
     }
 
+    public function getReceive(){
+        $sql = "SELECT * 
+                FROM tb_item_receive
+                LEFT JOIN tb_item ON tb_item.item_id = tb_item_receive.receive_item
+                LEFT JOIN tb_employee ON tb_employee.emp_id = tb_item_receive.receive_emp";
+        global $mysqli; $obj = array();
+        $res = $mysqli->query($sql);
+        while($data = $res->fetch_assoc()) {
+            $obj[] = $data;
+        }
+    return $obj;
+    }
+
 }
 
 ?>

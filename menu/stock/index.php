@@ -217,6 +217,12 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>ราคาซื้อ</td>
+                            <td>
+                                <input type="number" id="get_price" name="get_price" class="form-control" placeholder="กรอกเป็นตัวเลขจำนวนเต็มเท่านั้น">
+                            </td>
+                        </tr>
+                        <tr>
                             <td>จำนวนรับเข้า</td>
                             <td>
                                 <input type="number" id="get_instock" name="get_instock" class="form-control" placeholder="กรอกเป็นตัวเลขจำนวนเต็มเท่านั้น">
@@ -225,6 +231,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
+                    <input type="hidden" name="empID" class="form-control" value="<?=$_SESSION['user']?>">
                     <button type="submit" id="btnUpdate" class="btn btn-success btn-sm"><i class="fa fa-save"></i>
                         บันทึกการรับเข้าสินค้า
                     </button>
@@ -243,8 +250,6 @@
         </div>
     </div>
 </div>
-
-
 
 <script>
 $('#addItemNew').on("submit", function(event) {
