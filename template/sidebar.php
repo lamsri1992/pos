@@ -61,12 +61,12 @@
                         <p>ประวัติการรับสินค้าเข้า</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-sliders-h"></i>
                         <p>การตั้งค่าระบบ</p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-question-circle"></i>
