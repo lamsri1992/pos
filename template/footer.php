@@ -2,7 +2,7 @@
     <div class="float-right d-none d-sm-inline">
         POS & STOCK MANAGEMENT V.0.1
     </div>
-    <strong>Copyright &copy;<?=date("Y")?>
-        <a href="http://watchanhospital.com" target="_blank">SATIYA_SOFT</a>.
-    </strong> All rights reserved.
+    <span>Copyright &copy;<?=date("Y")?>
+        <a href="#" target="_blank">K@K Network&Software</a>.
+    </span> All rights reserved.
 </footer>

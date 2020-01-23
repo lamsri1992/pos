@@ -46,12 +46,6 @@
                                 <p>ยอดขายรายวัน</p>
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a href="?menu=week" class="nav-link <?=$ac_week?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>ยอดขายรายสัปดาห์</p>
-                            </a>
-                        </li> -->
                         <li class="nav-item">
                             <a href="#" class="nav-link <?=$ac_month?>" data-toggle="modal" data-target="#month">
                                 <i class="far fa-circle nav-icon"></i>
@@ -103,7 +97,7 @@
                     </select>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="btnSave" class="btn btn-success btn-sm"><i class="fa fa-search"></i>
+                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-search"></i>
                         ตกลง
                     </button>
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">ปิดหน้าต่าง</button>

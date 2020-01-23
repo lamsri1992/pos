@@ -163,6 +163,78 @@
     </div>
 </div>
 
+<!-- updateItem -->
+<div class="modal fade" id="updateItem" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fa fa-cart-arrow-down"></i> รับเข้าสินค้า</h5>
+            </div>
+            <form id="updateItemStock">
+                <div class="modal-body">
+                    <table class="table table-bordered table-sm table-valign-middle" width="100%">
+                        <tr>
+                            <td>เลขที่บิล/ใบสั่งซื้อ</td>
+                            <td>
+                                <input type="text" name="bill" class="form-control" placeholder="ระบุเลขที่บิล/ใบสั่งซื้อ หากไม่มีให้ใส่ -" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">ค้นหาชื่อรายการสินค้า</td>
+                            <td>
+                                <input type="text" id="autoItem" name="autoItem" class="form-control" placeholder="พิมพ์ Keyword สินค้า" required>
+                                <input type="hidden" id="autoID" name="autoID" class="form-control" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Barcode</td>
+                            <td>
+                                <input type="text" id="get_barcode" name="get_barcode" class="form-control" placeholder="auto fill" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>หน่วยนับ</td>
+                            <td>
+                                <input type="text" id="get_unit" name="get_unit" class="form-control" placeholder="auto fill" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>จำนวนคงคลัง</td>
+                            <td>
+                                <input type="text" id="get_stock" name="get_stock" class="form-control" placeholder="auto fill" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>จำนวนคงเหลือ</td>
+                            <td>
+                                <input type="text" id="get_balance" name="get_balance" class="form-control" placeholder="auto fill" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>จุดสั่งซื้อ</td>
+                            <td>
+                                <input type="text" id="get_orderpoint" name="get_orderpoint" class="form-control" placeholder="auto fill" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>จำนวนรับเข้า</td>
+                            <td>
+                                <input type="number" id="get_instock" name="get_instock" class="form-control" placeholder="กรอกเป็นตัวเลขจำนวนเต็มเท่านั้น">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btnUpdate" class="btn btn-success btn-sm"><i class="fa fa-save"></i>
+                        บันทึกการรับเข้าสินค้า
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">ปิดหน้าต่าง</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Modal Edit -->
 <div class="modal fade" id="editItem" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document" style="font-size:14px;">
@@ -171,6 +243,8 @@
         </div>
     </div>
 </div>
+
+
 
 <script>
 $('#addItemNew').on("submit", function(event) {
@@ -206,6 +280,39 @@ $('#addItemNew').on("submit", function(event) {
         });
 });
 
+$('#updateItemStock').on("submit", function(event) {
+    event.preventDefault();
+    swal({
+            title: "ยืนยันการรับเข้ารายการสินค้า ?",
+            icon: "warning",
+            dangerMode: true,
+            buttons: true,
+        })
+        .then((createCnf) => {
+            if (createCnf) {
+                document.getElementById("btnUpdate").disabled = true;
+                $.ajax({
+                    url: "menu/stock/query.php?op=updateItem",
+                    method: "POST",
+                    data: $('#updateItemStock').serialize(),
+                    success: function(data) {
+                        swal('บันทึกข้อมูลแล้ว',
+                            'Update item Success',
+                            'success', {
+                                closeOnClickOutside: false,
+                                closeOnEsc: false,
+                                buttons: false,
+                                timer: 1000,
+                            });
+                        window.setTimeout(function() {
+                            location.replace('?menu=stock')
+                        }, 1500);
+                    }
+                });
+            }
+        });
+});
+
 $('.ajaxItem').click(function() {
     var id = $(this).attr('data-id');
     $.ajax({
@@ -216,4 +323,39 @@ $('.ajaxItem').click(function() {
         }
     });
 });
+
+function make_autocom(autoObj, showObj) {
+    var mkAutoObj = autoObj;
+    var mkSerValObj = showObj;
+    new Autocomplete(mkAutoObj, function() {
+        this.setValue = function(id) {
+            document.getElementById(mkSerValObj).value = id;
+            if (id != "") {
+                $.post("menu/stock/json_item_fill.php", {
+                    id: id
+                }, function(data) {
+                    if (data != null && data.length > 0) {
+                        $("#get_barcode").val(data[0].barcode);
+                        $("#get_unit").val(data[0].unit);
+                        $("#get_stock").val(data[0].stock);
+                        $("#get_balance").val(data[0].balance);
+                        $("#get_orderpoint").val(data[0].orderpoint);
+                    }
+                });
+            } else {
+                $("#get_barcode").val("");
+                $("#get_unit").val("");
+                $("#get_stock").val("");
+                $("#get_balance").val("");
+                $("#get_orderpoint").val("");
+            }
+        }
+        if (this.isModified)
+            this.setValue("");
+        if (this.value.length < 1 && this.isNotClick)
+            return;
+        return "menu/stock/json_item_take.php?q=" + encodeURIComponent(this.value);
+    });
+}
+make_autocom("autoItem", "autoID");
 </script>

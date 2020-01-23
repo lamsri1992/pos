@@ -69,4 +69,23 @@ if($op == 'editItem'){
     );
     updateSQL("tb_item",$data,"item_id=$id");
 }
+
+if($op == 'updateItem'){
+    $bill = mysqli_real_escape_string($mysqli,$_REQUEST['bill']);
+    $item = mysqli_real_escape_string($mysqli,$_REQUEST['autoID']);
+    $amount = mysqli_real_escape_string($mysqli,$_REQUEST['get_instock']);
+    $data = array(
+        "receive_item"=>$item,
+        "receive_bill"=>$bill,
+        "receive_amount"=>$amount
+    );
+    insertSQL("tb_item_receive",$data);
+    // Update Stock Balance
+    $now = date('Y-m-d H:i:s');
+    $data = array(
+        "item_balance"=>$amount,
+        "item_update"=>$now
+    );
+    updateSQL("tb_item",$data,"item_id=$item");
+}
 ?>
