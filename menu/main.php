@@ -60,7 +60,7 @@ $chart_order = $fnc->getChartOrder();
                                 <h3 class="card-title">5 อันดับสินค้าขายดี</h3>
                             </div>
                             <div class="card-body p-0">
-                                <table class="table table-striped table-valign-middle">
+                                <table class="table table-valign-middle">
                                     <thead>
                                         <tr>
                                             <th class="text-center">Rank</th>
@@ -70,24 +70,9 @@ $chart_order = $fnc->getChartOrder();
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- <tr>
-                                            <td>1</td>
-                                            <td>เบียร์ช้าง ขวดใหญ่</td>
-                                            <td>58.00 บาท</td>
-                                            <td>464.00 บาท</td>
-                                        </tr>
                                         <tr>
-                                            <td>2</td>
-                                            <td>เบียร์สิงห์ ขวดใหญ่</td>
-                                            <td>65.00 บาท</td>
-                                            <td>325.00 บาท</td>
+                                            <td class="text-center" colspan="4">ยังไม่แล้วเตื้อ</td>
                                         </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>มาม่า ต้มยำกุ้ง</td>
-                                            <td>6.00 บาท</td>
-                                            <td>12.00 บาท</td>
-                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>

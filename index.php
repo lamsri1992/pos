@@ -72,27 +72,22 @@ $empSession = $fnc->getUser($_SESSION['user']);
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
     <script>
     $(document).ready(function() {
-        var table = $('#reportTable').DataTable({
-            responsive: true,
-            "pageLength": 20,
-            "lengthMenu": [
-                [20, 50, 100, -1],
-                [20, 50, 100, "All"]
-            ],
-            dom: 'Bfrtip',
-            buttons: [{
-                    extend: 'excel',
-                },
-                {
-                    extend: 'print',
-                }
-            ],
-        });
-    });
-    $(document).ready(function() {
         var table = $('#itemData').DataTable({
             scrollX: true,
             responsive: true,
+            "pageLength": 20,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'excel',
+                    text: '<i class="fa fa-file-excel"></i> Save as Excel',
+                    className:"btn btn-success btn-sm",
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fa fa-print"></i> พิมพ์รายการ',
+                    className:"btn btn-primary btn-sm",
+                }
+            ],
         });
     });
     </script>

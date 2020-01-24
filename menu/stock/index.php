@@ -46,9 +46,6 @@
                     <a href="?menu=setUnit" class="btn btn-info btn-sm">
                         <i class="fa fa-tasks"></i> ตั้งค่าหน่วยนับ
                     </a>
-                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#">
-                        <i class="fa fa-print"></i> พิมพ์รายงาน
-                    </button>
                 </div>
             </div>
             <table id="itemData" class="table table-sm table-hover compact" width="100%">
@@ -176,56 +173,65 @@
                         <tr>
                             <td>เลขที่บิล/ใบสั่งซื้อ</td>
                             <td>
-                                <input type="text" name="bill" class="form-control" placeholder="ระบุเลขที่บิล/ใบสั่งซื้อ หากไม่มีให้ใส่ -" required>
+                                <input type="text" name="bill" class="form-control"
+                                    placeholder="ระบุเลขที่บิล/ใบสั่งซื้อ หากไม่มีให้ใส่ -" required>
                             </td>
                         </tr>
                         <tr>
                             <td width="20%">ค้นหาชื่อรายการสินค้า</td>
                             <td>
-                                <input type="text" id="autoItem" name="autoItem" class="form-control" placeholder="พิมพ์ Keyword สินค้า" required>
+                                <input type="text" id="autoItem" name="autoItem" class="form-control"
+                                    placeholder="พิมพ์ Keyword สินค้า" required>
                                 <input type="hidden" id="autoID" name="autoID" class="form-control" required>
                             </td>
                         </tr>
                         <tr>
                             <td>Barcode</td>
                             <td>
-                                <input type="text" id="get_barcode" name="get_barcode" class="form-control" placeholder="auto fill" disabled>
+                                <input type="text" id="get_barcode" name="get_barcode" class="form-control"
+                                    placeholder="auto fill" disabled>
                             </td>
                         </tr>
                         <tr>
                             <td>หน่วยนับ</td>
                             <td>
-                                <input type="text" id="get_unit" name="get_unit" class="form-control" placeholder="auto fill" disabled>
+                                <input type="text" id="get_unit" name="get_unit" class="form-control"
+                                    placeholder="auto fill" disabled>
                             </td>
                         </tr>
                         <tr>
                             <td>จำนวนคงคลัง</td>
                             <td>
-                                <input type="text" id="get_stock" name="get_stock" class="form-control" placeholder="auto fill" disabled>
+                                <input type="text" id="get_stock" name="get_stock" class="form-control"
+                                    placeholder="auto fill" disabled>
                             </td>
                         </tr>
                         <tr>
                             <td>จำนวนคงเหลือ</td>
                             <td>
-                                <input type="text" id="get_balance" name="get_balance" class="form-control" placeholder="auto fill" disabled>
+                                <input type="text" id="get_balance" name="get_balance" class="form-control"
+                                    placeholder="auto fill" disabled>
                             </td>
                         </tr>
                         <tr>
                             <td>จุดสั่งซื้อ</td>
                             <td>
-                                <input type="text" id="get_orderpoint" name="get_orderpoint" class="form-control" placeholder="auto fill" disabled>
+                                <input type="text" id="get_orderpoint" name="get_orderpoint" class="form-control"
+                                    placeholder="auto fill" disabled>
                             </td>
                         </tr>
                         <tr>
                             <td>ราคาซื้อ</td>
                             <td>
-                                <input type="number" id="get_price" name="get_price" class="form-control" placeholder="กรอกเป็นตัวเลขจำนวนเต็มเท่านั้น">
+                                <input type="number" id="get_price" name="get_price" class="form-control"
+                                    placeholder="กรอกเป็นตัวเลขจำนวนเต็มเท่านั้น">
                             </td>
                         </tr>
                         <tr>
                             <td>จำนวนรับเข้า</td>
                             <td>
-                                <input type="number" id="get_instock" name="get_instock" class="form-control" placeholder="กรอกเป็นตัวเลขจำนวนเต็มเท่านั้น">
+                                <input type="number" id="get_instock" name="get_instock" class="form-control"
+                                    placeholder="กรอกเป็นตัวเลขจำนวนเต็มเท่านั้น">
                             </td>
                         </tr>
                     </table>

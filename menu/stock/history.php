@@ -10,9 +10,6 @@
                 <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#">
                     <i class="fa fa-calendar"></i> ค้นหาตามช่วงเวลา
                 </button>
-                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#">
-                    <i class="fa fa-print"></i> พิมพ์รายงาน
-                </button>
             </div>
         </div>
         <div class="card-body">
