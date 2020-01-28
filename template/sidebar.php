@@ -2,12 +2,14 @@
 	$menu = $_GET['menu'];
     if($menu=='main' || $menu==''){$ac_main='active';}
 	if($menu=='sale'){$ac_sale='active';}
-    if($menu=='stock' || $menu=='setUnit'){$ac_stock='active';}
+    if($menu=='stock' || $menu=='setUnit' || $menu=='setGroup'){$ac_stock='active';}
     if($menu=='daily' || $menu=='week' || $menu=='month'){$ac_report='active'; $box='menu-open';}
     if($menu=='daily'){$ac_daily='active';}
     if($menu=='week'){$ac_week='active';}
     if($menu=='month'){$ac_month='active';}
     if($menu=='history'){$ac_history='active';}
+    if($menu=='shared'){$ac_shared='active';}
+    if($menu=='credit'){$ac_credit='active';}
 ?>
 <aside class="main-sidebar elevation-4 sidebar-dark-info">
     <a href="?" class="brand-link text-center">
@@ -56,17 +58,23 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a href="?menu=credit" class="nav-link <?=$ac_credit?>">
+                        <i class="nav-icon fa fa-user-tag"></i>
+                        <p>ระบบลูกค้าสินเชื่อ</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="?menu=history" class="nav-link <?=$ac_history?>">
                         <i class="nav-icon fa fa-history"></i>
                         <p>ประวัติการรับสินค้าเข้า</p>
                     </a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-sliders-h"></i>
-                        <p>การตั้งค่าระบบ</p>
+                <li class="nav-item">
+                    <a href="?menu=shared" class="nav-link <?=$ac_shared?>">
+                        <i class="nav-icon fa fa-retweet"></i>
+                        <p>ประวัติการแบ่งสินค้าขาย</p>
                     </a>
-                </li> -->
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-question-circle"></i>

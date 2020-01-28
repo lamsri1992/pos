@@ -47,9 +47,12 @@ if($op == 'delCart'){
 if($op == 'endCart'){
     $id = mysqli_real_escape_string($mysqli,$_REQUEST['empID']);
     $total = mysqli_real_escape_string($mysqli,$_REQUEST['total']);
+    $discount = mysqli_real_escape_string($mysqli,$_REQUEST['discount']);
+    $credit = mysqli_real_escape_string($mysqli,$_REQUEST['credit']);
     $data = array(
         "emp_id"=>$id,
-        "order_income"=>$total
+        "order_income"=>$total,
+        "order_discount"=>$discount
     );
     insertSQL("tb_order",$data);
     // Get Last OrderID
@@ -59,6 +62,14 @@ if($op == 'endCart'){
         "order_id"=>$last_id['last_id']
     );
     updateSQL("tb_order_list",$data,"order_id IS NULL");
+    // Credit Customer
+    if($credit != ""){
+    $data = array(
+        "credit_customer"=>$credit,
+        "credit_order"=>$last_id['last_id']
+    );
+    insertSQL("tb_credit",$data);
+    }
 }
 
 ?>

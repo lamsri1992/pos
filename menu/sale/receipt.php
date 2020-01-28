@@ -48,37 +48,59 @@ $cart = $fnc->getCart();
                     <?php } ?>
                     <tr>
                         <td class="text-right" colspan="2">
-                            <span span style="color:black;font-size:30px;font-weight:bold;">
+                            <span span style="color:black;font-size:20px;font-weight:bold;">
+                                ส่วนลด
+                            </span>
+                        </td>
+                        <td colspan="2">
+                            <input type="number" id="discount" name="discount" onchange="dsum()"
+                                class="form-control text-center" style="color:purple;font-size:20px;font-weight:bold;"
+                                value="0" max="<?=$total?>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right" colspan="2">
+                            <span span style="color:black;font-size:20px;font-weight:bold;">
                                 รวมทั้งหมด
                             </span>
                         </td>
                         <td colspan="2">
                             <input type="number" id="total" name="total" class="form-control text-center"
-                                value="<?=$total?>" style="color:red;font-size:40px;font-weight:bold;" readonly>
+                                value="<?=$total?>" style="color:red;font-size:20px;font-weight:bold;" readonly>
                         </td>
                     </tr>
                     <tr>
                         <td class="text-right" colspan="2">
-                            <span style="color:black;font-size:30px;font-weight:bold;">
+                            <span style="color:black;font-size:20px;font-weight:bold;">
                                 จำนวนเงินที่รับมา
                             </span>
                         </td>
                         <td colspan="2">
                             <input type="number" id="receive" onfocus="sum()" onblur="sum()" onchange="sum()"
                                 onkeyup="sum()" class="form-control text-center"
-                                style="color:blue;font-size:40px;font-weight:bold;">
+                                style="color:blue;font-size:20px;font-weight:bold;">
                         </td>
                     </tr>
                     <tr>
                         <td class="text-right" colspan="2">
-                            <span style="color:black;font-size:30px;font-weight:bold;">
+                            <span style="color:black;font-size:20px;font-weight:bold;">
                                 เงินทอน
                             </span>
                         </td>
                         <td colspan="2">
-                            <input type="number" id="change" onfocus="sum()" onblur="sum()" onchange="sum()"
-                                onkeyup="sum()" class="form-control text-center"
-                                style="color:green;font-size:40px;font-weight:bold;" readonly>
+                            <input type="number" id="change" onchange="sum()" class="form-control text-center"
+                                style="color:green;font-size:20px;font-weight:bold;" value="0" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right" colspan="2">
+                            <span style="color:black;font-size:20px;font-weight:bold;">
+                                ลูกค้าสินเชื่อ
+                            </span>
+                        </td>
+                        <td colspan="2">
+                            <input type="text" id="credit" name="credit" class="form-control text-center"
+                                style="color:black;font-size:20px;font-weight:bold;">
                         </td>
                     </tr>
                 </tbody>
@@ -97,6 +119,10 @@ $cart = $fnc->getCart();
 <script>
 // Calculate
 var obj = document.all;
+
+function dsum() {
+    obj.total.value = parseInt(obj.total.value) - parseInt(obj.discount.value);
+}
 
 function sum() {
     obj.change.value = parseInt(obj.receive.value) - parseInt(obj.total.value);

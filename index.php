@@ -80,12 +80,12 @@ $empSession = $fnc->getUser($_SESSION['user']);
             buttons: [{
                     extend: 'excel',
                     text: '<i class="fa fa-file-excel"></i> Save as Excel',
-                    className:"btn btn-success btn-sm",
+                    className: "btn btn-success btn-sm",
                 },
                 {
                     extend: 'print',
                     text: '<i class="fa fa-print"></i> พิมพ์รายการ',
-                    className:"btn btn-primary btn-sm",
+                    className: "btn btn-primary btn-sm",
                 }
             ],
         });
@@ -108,11 +108,14 @@ $empSession = $fnc->getUser($_SESSION['user']);
             <?php if (!isset($menu)){ include ('menu/main.php'); }?>
             <?php if ($menu=='sale'){ include ('menu/sale/index.php'); }?>
             <?php if ($menu=='stock'){ include ('menu/stock/index.php'); }?>
+            <?php if ($menu=='setGroup'){ include ('menu/stock/group.php'); }?>
             <?php if ($menu=='setUnit'){ include ('menu/stock/unit.php'); }?>
             <?php if ($menu=='daily'){ include ('menu/sale/daily.php'); }?>
             <?php if ($menu=='week'){ include ('menu/sale/week.php'); }?>
             <?php if ($menu=='month'){ include ('menu/sale/month.php'); }?>
             <?php if ($menu=='history'){ include ('menu/stock/history.php'); }?>
+            <?php if ($menu=='shared'){ include ('menu/stock/shared.php'); }?>
+            <?php if ($menu=='credit'){ include ('menu/credit/index.php'); }?>
         </div>
         <?php include ('template/footer.php'); ?>
     </div>

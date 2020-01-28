@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-6 col-6">
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3><?=$sales?><sup style="font-size: 20px"> ชิ้น</sup></h3>
@@ -18,7 +18,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-6 col-6">
                     <div class="small-box bg-success">
                         <div class="inner">
                             <h3><?=$total?><sup style="font-size: 20px"> บาท</sup></h3>
@@ -26,28 +26,6 @@
                         </div>
                         <div class="icon">
                             <i class="fa fa-comment-dollar"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <div class="small-box bg-dark">
-                        <div class="inner">
-                            <h3>0<sup style="font-size: 20px"> คน</sup></h3>
-                            <p>ลูกหนี้/เดือน</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-user-times"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h3>0<sup style="font-size: 20px"> คน</sup></h3>
-                            <p>สมาชิกร้านค้าใหม่/เดือน</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-user-plus"></i>
                         </div>
                     </div>
                 </div>

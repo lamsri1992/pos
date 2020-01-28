@@ -8,6 +8,7 @@ $fnc = new pos();
 $id = $_REQUEST['id'];
 $data = $fnc->editItem($id);
 $unit = $fnc->getUnit();
+$group = $fnc->getGroup();
 ?>
 
 <div class="modal-content">
@@ -32,6 +33,19 @@ $unit = $fnc->getUnit();
                         <td>
                             <input type="number" name="price" class="form-control" placeholder="กรอกเฉพาะตัวเลข"
                                 value="<?=$data['item_price']?>" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>หมวดหมู่สินค้า</td>
+                        <td>
+                            <select name="group" class="form-control input-md" required>
+                                <?php foreach ($group AS $ds){ ?>
+                                <option value="<?=$ds['group_id']?>" <?php
+                                    if ($data['item_group']==$ds['group_id']){ echo 'SELECTED'; } ?>>
+                                    <?=$ds['group_name']?>
+                                </option>
+                                <?php } ?>
+                            </select>
                         </td>
                     </tr>
                     <tr>

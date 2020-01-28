@@ -1,4 +1,4 @@
-<?php $item = $fnc->getStock(); $unit = $fnc->getUnit(); $count_item = $fnc->countItem(); $count_order = $fnc->countOrderPoint(); $count_low = $fnc->countLowOrderPoint();?>
+<?php $unit = $fnc->getUnit(); $count_item = $fnc->countItem(); $count_order = $fnc->countOrderPoint(); $count_low = $fnc->countLowOrderPoint();?>
 <section class="content-header"></section>
 <section class="content">
     <div class="card">
@@ -60,10 +60,6 @@
                                 data-id="<?=$it['item_id']?>">
                                 <i class="fa fa-edit"></i> แก้ไข
                             </a>
-                            <a href="menu/stock/query.php?op=delUnit&id=<?=$it['unit_id']?>" class="badge badge-danger"
-                                onclick="return confirm('ยืนยันการลบหน่วยนับ <?=$it['unit_name']?> ?\nหากลบข้อมูลหน่วยนับ อาจส่งผลต่อระบบคลังบางส่วน')">
-                                <i class="fa fa-trash-alt"></i> ลบ
-                            </a>
                         </td>
                     </tr>
                     <?php } ?>
@@ -78,7 +74,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-cart-plus"></i> เพิ่มสินค้าใหม่</h5>
+                <h5 class="modal-title"><i class="fa fa-cart-plus"></i> เพิ่มหน่วยนับ</h5>
             </div>
             <form id="addItemNew">
                 <div class="modal-body">
@@ -86,7 +82,8 @@
                         <tr>
                             <td width="20%">ชื่อหน่วยนับ</td>
                             <td>
-                                <input type="text" name="name" class="form-control" placeholder="ระบุชื่อหน่วยนับ" required>
+                                <input type="text" name="name" class="form-control" placeholder="ระบุชื่อหน่วยนับ"
+                                    required>
                             </td>
                         </tr>
                     </table>

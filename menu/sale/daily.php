@@ -1,4 +1,7 @@
-<?php $daily = $fnc->getDaily(date('Y-m-d')); foreach ($daily as $ct){ $total += $ct['item_price']*$ct['list_qty']; $sales += $ct['list_qty']; } ?>
+<?php $daily = $fnc->getDaily(date('Y-m-d')); $credit_daily = $fnc->getCreditDaily(date('Y-m-d')); $count_credit = $fnc->countCreditDaily(date('Y-m-d'));
+foreach ($daily as $ct){ $sales += $ct['list_qty']; $total += $ct['order_income']; } 
+foreach ($credit_daily as $ct){ $total_credit += $ct['order_income']; }
+?>
 <section class="content-header"></section>
 <section class="content">
     <div class="card">
@@ -23,7 +26,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3><?=$total?><sup style="font-size: 20px"> บาท</sup></h3>
+                            <h3><?=number_format($total-$total_credit,2)?><sup style="font-size: 20px"> บาท</sup></h3>
                             <p>ยอดการขายวันนี้</p>
                         </div>
                         <div class="icon">
@@ -34,7 +37,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-dark">
                         <div class="inner">
-                            <h3>0<sup style="font-size: 20px"> คน</sup></h3>
+                            <h3><?=$count_credit['num']?><sup style="font-size: 20px"> ราย</sup></h3>
                             <p>ลูกหนี้วันนี้</p>
                         </div>
                         <div class="icon">
@@ -45,8 +48,8 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>0<sup style="font-size: 20px"> คน</sup></h3>
-                            <p>สมาชิกร้านค้าใหม่</p>
+                            <h3><?=number_format($total_credit,2)?><sup style="font-size: 20px"> บาท</sup></h3>
+                            <p>ยอดลูกหนี้</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-user-plus"></i>
@@ -76,7 +79,7 @@
                             <td class=""><?=$it['item_name']?></td>
                             <td class="text-center"><?=$it['list_qty']?></td>
                             <td class="text-center"><?=$it['unit_name']?></td>
-                            <td class="text-right"><?=number_format($it['item_price']*$it['list_qty'],2)?></td>
+                            <td class="text-right"><?=number_format($it['order_income'],2)?></td>
                             <td class="text-center"><?=$it['emp_name']?></td>
                             <td class="text-center"><?=DateTimeThai($it['order_date'])?></td>
                         </tr>

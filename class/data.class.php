@@ -41,6 +41,27 @@ Class pos {
     return $data;
     }
 
+    public function countCredit(){
+        $sql = "SELECT COUNT(*) AS num
+                FROM tb_credit
+                WHERE credit_status = 'unpaid'";
+        global $mysqli;
+        $res = $mysqli->query($sql);
+        $data = $res->fetch_assoc();
+    return $data;
+    }
+
+    public function countCreditDaily($dateNow){
+        $sql = "SELECT COUNT(*) AS num
+                FROM tb_credit
+                WHERE credit_status = 'unpaid'
+                AND SUBSTRING(tb_credit.credit_date,1,10) = '{$dateNow}'";
+        global $mysqli;
+        $res = $mysqli->query($sql);
+        $data = $res->fetch_assoc();
+    return $data;
+    }
+
     public function getItem($barcode){
         $sql = "SELECT *
                 FROM tb_item
@@ -106,6 +127,17 @@ Class pos {
     return $obj;
     }
 
+    public function getGroup(){
+        $sql = "SELECT * 
+                FROM tb_item_group";
+        global $mysqli; $obj = array();
+        $res = $mysqli->query($sql);
+        while($data = $res->fetch_assoc()) {
+            $obj[] = $data;
+        }
+    return $obj;
+    }
+
     public function getDaily($dateNow){
         $sql = "SELECT * 
                 FROM tb_order
@@ -130,6 +162,41 @@ Class pos {
                 LEFT JOIN tb_item_unit ON tb_item_unit.unit_id = tb_item.item_unit
                 LEFT JOIN tb_employee ON tb_employee.emp_id = tb_order.emp_id
                 WHERE MONTH(`order_date`) = $month";
+        global $mysqli; $obj = array();
+        $res = $mysqli->query($sql);
+        while($data = $res->fetch_assoc()) {
+            $obj[] = $data;
+        }
+    return $obj;
+    }
+
+    public function getCreditDaily($dateNow){
+        $sql = "SELECT * 
+                FROM tb_credit
+                LEFT JOIN tb_order ON tb_order.order_id = tb_credit.credit_order 
+                LEFT JOIN tb_order_list ON tb_order_list.order_id = tb_order.order_id 
+                LEFT JOIN tb_item ON tb_item.item_barcode = tb_order_list.list_barcode 
+                LEFT JOIN tb_item_unit ON tb_item_unit.unit_id = tb_item.item_unit
+                LEFT JOIN tb_employee ON tb_employee.emp_id = tb_order.emp_id
+                WHERE tb_credit.credit_status = 'unpaid'
+                AND SUBSTRING(tb_credit.credit_date,1,10) = '{$dateNow}'";
+        global $mysqli; $obj = array();
+        $res = $mysqli->query($sql);
+        while($data = $res->fetch_assoc()) {
+            $obj[] = $data;
+        }
+    return $obj;
+    }
+
+    public function getCredit(){
+        $sql = "SELECT * 
+                FROM tb_credit
+                LEFT JOIN tb_order ON tb_order.order_id = tb_credit.credit_order 
+                LEFT JOIN tb_order_list ON tb_order_list.order_id = tb_order.order_id 
+                LEFT JOIN tb_item ON tb_item.item_barcode = tb_order_list.list_barcode 
+                LEFT JOIN tb_item_unit ON tb_item_unit.unit_id = tb_item.item_unit
+                LEFT JOIN tb_employee ON tb_employee.emp_id = tb_order.emp_id
+                WHERE tb_credit.credit_status = 'unpaid'";
         global $mysqli; $obj = array();
         $res = $mysqli->query($sql);
         while($data = $res->fetch_assoc()) {
@@ -166,6 +233,18 @@ Class pos {
                 FROM tb_item_receive
                 LEFT JOIN tb_item ON tb_item.item_id = tb_item_receive.receive_item
                 LEFT JOIN tb_employee ON tb_employee.emp_id = tb_item_receive.receive_emp";
+        global $mysqli; $obj = array();
+        $res = $mysqli->query($sql);
+        while($data = $res->fetch_assoc()) {
+            $obj[] = $data;
+        }
+    return $obj;
+    }
+
+    public function getShared(){
+        $sql = "SELECT * 
+                FROM tb_item_shared
+                LEFT JOIN tb_employee ON tb_employee.emp_id = tb_item_shared.shared_emp";
         global $mysqli; $obj = array();
         $res = $mysqli->query($sql);
         while($data = $res->fetch_assoc()) {
