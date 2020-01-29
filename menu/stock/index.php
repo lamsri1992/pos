@@ -41,7 +41,7 @@
                         <i class="fa fa-cart-plus"></i> เพิ่มสินค้าใหม่
                     </button>
                     <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#sharedItem">
-                        <i class="fa fa-retweet"></i> แบ่งสินค้าขาย
+                        <i class="fa fa-sign-out-alt"></i> เบิกคลังสินค้า
                     </button>
                     <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateItem">
                         <i class="fa fa-cart-arrow-down"></i> รับเข้าสินค้า
@@ -273,25 +273,25 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa fa-retweet"></i> แบ่งสินค้าขาย</h5>
+                <h5 class="modal-title"><i class="fa fa-sign-out-alt"></i> เบิกคลังสินค้า</h5>
             </div>
             <form id="sharedItemStock">
                 <div class="modal-body">
-                    <h6><i class="fa fa-share-square"></i> สินค้าที่ต้องการแบ่งขาย</h6>
+                    <!-- <h6><i class="fa fa-share-square"></i> สินค้าที่ต้องการเบิกคลัง</h6> -->
                     <table class="table table-bordered table-sm table-valign-middle" width="100%">
                         <tr>
-                            <td width="20%">รายการสินค้า</td>
+                            <td width="20%">Barcode</td>
                             <td>
-                                <input type="text" id="itemName" name="itemName" class="form-control"
-                                    placeholder="พิมพ์ Keyword สินค้าที่ต้องการแยกขาย" required>
-                                <input type="hidden" id="itemID" name="itemID" class="form-control" required>
+                                <input type="text" id="get_barcode2" name="get_barcode2" class="form-control"
+                                    placeholder="สแกน Barcode รายการสินค้า">
                             </td>
                         </tr>
                         <tr>
-                            <td>Barcode</td>
+                            <td>รายการสินค้า</td>
                             <td>
-                                <input type="text" id="get_barcode2" name="get_barcode2" class="form-control"
+                                <input type="text" id="itemName" name="itemName" class="form-control"
                                     placeholder="auto fill" disabled>
+                                <input type="hidden" id="itemID" name="itemID" class="form-control" required>
                             </td>
                         </tr>
                         <tr>
@@ -309,28 +309,28 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>จำนวนที่ต้องการแบ่ง</td>
+                            <td>จำนวนที่ต้องการเบิก</td>
                             <td>
                                 <input type="num" id="item_num1" name="item_num1" class="form-control"
-                                    placeholder="จำนวนที่ต้องการแบ่ง">
+                                    placeholder="จำนวนที่ต้องการเบิก">
                             </td>
                         </tr>
                     </table>
                     <h6><i class="fa fa-plus-square"></i> สินค้าที่ต้องการเพิ่ม</h6>
                     <table class="table table-bordered table-sm table-valign-middle" width="100%">
                         <tr>
-                            <td width="20%">รายการสินค้า</td>
-                            <td>
-                                <input type="text" id="itemName2" name="itemName2" class="form-control"
-                                    placeholder="พิมพ์ Keyword สินค้าที่ต้องการรับเข้า" required>
-                                <input type="hidden" id="itemID2" name="itemID2" class="form-control" required>
-                            </td>
-                        </tr>
-                        <tr>
                             <td>Barcode</td>
                             <td>
                                 <input type="text" id="get_barcode3" name="get_barcode3" class="form-control"
+                                    placeholder="สแกน Barcode รายการสินค้า" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">รายการสินค้า</td>
+                            <td>
+                                <input type="text" id="itemName2" name="itemName2" class="form-control"
                                     placeholder="auto fill" disabled>
+                                <input type="hidden" id="itemID2" name="itemID2" class="form-control" required>
                             </td>
                         </tr>
                         <tr>
@@ -534,13 +534,13 @@ function make_autocom2(autoObj, showObj) {
                     id: id
                 }, function(data) {
                     if (data != null && data.length > 0) {
-                        $("#get_barcode2").val(data[0].barcode);
+                        $("#itemName").val(data[0].name);
                         $("#get_unit2").val(data[0].unit);
                         $("#get_balance2").val(data[0].balance);
                     }
                 });
             } else {
-                $("#get_barcode2").val("");
+                $("#itemName").val("");
                 $("#get_unit2").val("");
                 $("#get_balance2").val("");
             }
@@ -552,7 +552,7 @@ function make_autocom2(autoObj, showObj) {
         return "menu/stock/json_item_take.php?q=" + encodeURIComponent(this.value);
     });
 }
-make_autocom2("itemName", "itemID");
+make_autocom2("get_barcode2", "itemID");
 
 function make_autocom3(autoObj, showObj) {
     var mkAutoObj = autoObj;
@@ -565,13 +565,13 @@ function make_autocom3(autoObj, showObj) {
                     id: id
                 }, function(data) {
                     if (data != null && data.length > 0) {
-                        $("#get_barcode3").val(data[0].barcode);
+                        $("#itemName2").val(data[0].name);
                         $("#get_unit3").val(data[0].unit);
                         $("#get_balance3").val(data[0].balance);
                     }
                 });
             } else {
-                $("#get_barcode3").val("");
+                $("#itemName2").val("");
                 $("#get_unit3").val("");
                 $("#get_balance3").val("");
             }
@@ -583,5 +583,5 @@ function make_autocom3(autoObj, showObj) {
         return "menu/stock/json_item_take.php?q=" + encodeURIComponent(this.value);
     });
 }
-make_autocom3("itemName2", "itemID2");
+make_autocom3("get_barcode3", "itemID2");
 </script>

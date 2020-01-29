@@ -48,11 +48,15 @@ if($op == 'endCart'){
     $id = mysqli_real_escape_string($mysqli,$_REQUEST['empID']);
     $total = mysqli_real_escape_string($mysqli,$_REQUEST['total']);
     $discount = mysqli_real_escape_string($mysqli,$_REQUEST['discount']);
+    $payment = mysqli_real_escape_string($mysqli,$_REQUEST['payment']);
     $credit = mysqli_real_escape_string($mysqli,$_REQUEST['credit']);
+    if($payment=="owner"){$total=0;}
+    if($payment==""){$payment="credit";}
     $data = array(
         "emp_id"=>$id,
         "order_income"=>$total,
-        "order_discount"=>$discount
+        "order_discount"=>$discount,
+        "order_payment"=>$payment
     );
     insertSQL("tb_order",$data);
     // Get Last OrderID

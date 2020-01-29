@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2020 at 10:39 AM
+-- Generation Time: Jan 29, 2020 at 10:35 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -21,6 +21,20 @@ SET time_zone = "+00:00";
 --
 -- Database: `pos_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_credit`
+--
+
+CREATE TABLE `tb_credit` (
+  `credit_id` int(5) UNSIGNED ZEROFILL NOT NULL,
+  `credit_customer` text DEFAULT NULL,
+  `credit_order` int(5) UNSIGNED ZEROFILL DEFAULT NULL,
+  `credit_date` timestamp NULL DEFAULT current_timestamp(),
+  `credit_status` text NOT NULL DEFAULT 'unpaid'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -53,12 +67,24 @@ CREATE TABLE `tb_item` (
   `item_name` varchar(150) DEFAULT NULL,
   `item_price` int(11) DEFAULT NULL,
   `item_unit` int(3) UNSIGNED ZEROFILL DEFAULT NULL,
+  `item_group` int(3) UNSIGNED ZEROFILL DEFAULT NULL,
   `item_stock` int(11) DEFAULT NULL,
   `item_orderpoint` int(11) DEFAULT NULL,
   `item_balance` int(11) DEFAULT NULL,
   `item_barcode` text DEFAULT NULL,
   `item_date` datetime DEFAULT NULL,
   `item_update` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_item_group`
+--
+
+CREATE TABLE `tb_item_group` (
+  `group_id` int(3) UNSIGNED ZEROFILL NOT NULL,
+  `group_name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -80,26 +106,29 @@ CREATE TABLE `tb_item_receive` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_item_shared`
+--
+
+CREATE TABLE `tb_item_shared` (
+  `shared_id` int(5) UNSIGNED ZEROFILL NOT NULL,
+  `shared_item_main` varchar(10) DEFAULT NULL,
+  `shared_item_sub` varchar(10) DEFAULT NULL,
+  `shared_item_main_num` int(5) DEFAULT NULL,
+  `shared_item_sub_num` int(5) DEFAULT NULL,
+  `shared_date` timestamp NULL DEFAULT current_timestamp(),
+  `shared_emp` varchar(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_item_unit`
 --
 
 CREATE TABLE `tb_item_unit` (
   `unit_id` int(3) UNSIGNED ZEROFILL NOT NULL,
-  `unit_name` varchar(150) DEFAULT NULL
+  `unit_name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tb_item_unit`
---
-
-INSERT INTO `tb_item_unit` (`unit_id`, `unit_name`) VALUES
-(001, 'ซอง'),
-(002, 'ขวด'),
-(003, 'กระป๋อง'),
-(004, 'กล่อง'),
-(005, 'เล่ม'),
-(006, 'ด้าม'),
-(007, 'ชิ้น');
 
 -- --------------------------------------------------------
 
@@ -111,6 +140,8 @@ CREATE TABLE `tb_order` (
   `order_id` int(5) UNSIGNED ZEROFILL NOT NULL,
   `order_date` timestamp NULL DEFAULT current_timestamp(),
   `order_income` int(10) DEFAULT NULL,
+  `order_discount` int(10) DEFAULT NULL,
+  `order_payment` varchar(255) DEFAULT NULL,
   `emp_id` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -132,6 +163,12 @@ CREATE TABLE `tb_order_list` (
 --
 
 --
+-- Indexes for table `tb_credit`
+--
+ALTER TABLE `tb_credit`
+  ADD PRIMARY KEY (`credit_id`);
+
+--
 -- Indexes for table `tb_employee`
 --
 ALTER TABLE `tb_employee`
@@ -144,10 +181,22 @@ ALTER TABLE `tb_item`
   ADD PRIMARY KEY (`item_id`);
 
 --
+-- Indexes for table `tb_item_group`
+--
+ALTER TABLE `tb_item_group`
+  ADD PRIMARY KEY (`group_id`);
+
+--
 -- Indexes for table `tb_item_receive`
 --
 ALTER TABLE `tb_item_receive`
   ADD PRIMARY KEY (`receive_id`);
+
+--
+-- Indexes for table `tb_item_shared`
+--
+ALTER TABLE `tb_item_shared`
+  ADD PRIMARY KEY (`shared_id`);
 
 --
 -- Indexes for table `tb_item_unit`
@@ -172,6 +221,12 @@ ALTER TABLE `tb_order_list`
 --
 
 --
+-- AUTO_INCREMENT for table `tb_credit`
+--
+ALTER TABLE `tb_credit`
+  MODIFY `credit_id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_employee`
 --
 ALTER TABLE `tb_employee`
@@ -184,16 +239,28 @@ ALTER TABLE `tb_item`
   MODIFY `item_id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tb_item_group`
+--
+ALTER TABLE `tb_item_group`
+  MODIFY `group_id` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_item_receive`
 --
 ALTER TABLE `tb_item_receive`
   MODIFY `receive_id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tb_item_shared`
+--
+ALTER TABLE `tb_item_shared`
+  MODIFY `shared_id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_item_unit`
 --
 ALTER TABLE `tb_item_unit`
-  MODIFY `unit_id` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `unit_id` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_order`

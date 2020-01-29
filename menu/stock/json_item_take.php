@@ -13,11 +13,11 @@ if(isset($_GET['q']) && $_GET['q']!=""){
      
     $pagesize = 50;
     $table_db="tb_item";
-    $find_field="item_name";
+    $find_field="item_barcode";
     $sql = "
     SELECT
     item_id,
-    item_name
+    item_barcode
     FROM $table_db
     WHERE LOCATE('$q', $find_field) > 0
     ORDER BY LOCATE('$q', $find_field), $find_field LIMIT $pagesize";
@@ -27,7 +27,7 @@ if(isset($_GET['q']) && $_GET['q']!=""){
         while($row = $result->fetch_assoc()){
             $id = $row["item_id"];
             
-            $name = trim($row["item_name"]);
+            $name = trim($row["item_barcode"]);
             $name = addslashes($name);
             $name = htmlspecialchars($name);
             $display_name = preg_replace("/(" .$q. ")/i", "<b>$1</b>", $name);

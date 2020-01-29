@@ -15,6 +15,7 @@ $mysqli = connect();
 if($result && $result->num_rows > 0){
     $row = $result->fetch_assoc();
     $data_json[] = array(
+        "name" => $row['item_name'],
         "barcode" => $row['item_barcode'],
         "unit" => $row['unit_name'],
         "stock" => $row['item_stock'],

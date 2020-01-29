@@ -71,8 +71,8 @@
                 </li>
                 <li class="nav-item">
                     <a href="?menu=shared" class="nav-link <?=$ac_shared?>">
-                        <i class="nav-icon fa fa-retweet"></i>
-                        <p>ประวัติการแบ่งสินค้าขาย</p>
+                        <i class="nav-icon fa fa-sign-out-alt"></i>
+                        <p>ประวัติการเบิกคลังสินค้า</p>
                     </a>
                 </li>
                 <li class="nav-item">
